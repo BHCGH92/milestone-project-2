@@ -6,7 +6,7 @@
 :root {
     --font-primary: "Inter", sans-serif;
     --primary-color: #5A23C8; /* Deep Purple */
-    --darker-bg-color: #7E3FF2; /* Mid purple */
+    --mid-color: #7E3FF2; /* Mid purple */
     --secondary-color: #C6B7F5; /* Light Purple */
     --white-accent-color: #ffffff ; /* White */
     --charcoal-accent-color: #3c3c3c; /* Charcoal */
@@ -44,6 +44,7 @@
     color: #ffffff;
 }
 
+/* Sets the hamburger icon to white */
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
@@ -71,6 +72,15 @@ p {
     color: var(--charcoal-accent-color);
 }
 
+.custombutton {
+    background-color: var(--primary-color) !important;
+    color: var(--white-accent-color) !important;
+    border: var(--primary-color);
+}
+
+.custombutton:hover {
+    background-color: var(--mid-color) !important;
+}
 
 /* Focal Image */
 
@@ -104,6 +114,23 @@ p {
 
 .fontpriority {
     z-index: 1000;
+}
+
+/* Footer */
+
+footer p {
+  color: var(--white-accent-color);
+}
+
+.customfooter {
+
+    background: linear-gradient(to bottom, var(--white-accent-color), var(--primary-color) 5%),
+    var(--primary-color);
+    color: var(--white-accent-color);
+}
+
+.customfooter h1 {
+    color: var(--white-accent-color);
 }
 
 
