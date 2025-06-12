@@ -18,7 +18,7 @@ form.addEventListener('submit', async function(event) {
         }
 
     const countryData = await response.json();
-    
+
     /* Get the country name from the API */
     const countryName = countryData[0].name.common;
     /* Get the flag image URL from the API */
@@ -37,13 +37,13 @@ form.addEventListener('submit', async function(event) {
     /* Get the country capital */
     const capital = countryData[0].capital;
 
+    console.log('Full API Response:', countryData);
+
     countryDisplayRow.innerHTML = '';
 
     const countryHtml = `
-        <div class="col-md-6">
-            <img src="${countryFlag}" alt="${countryFlagAlt}" class="img-fluid mb-3">
-        </div>
-        <div class="col-md-6">
+        <div class="country-display-card">
+            <img src="${countryFlag}" alt="${countryFlagAlt}" class="img-fluid mb-3 mt-3">
             <h2>${countryName}</h2>
             <p><strong>Population:</strong> ${countryPopulation}</p>
             <p><strong>Currency:</strong> ${currencyName} (${currencySymbol})</p>
