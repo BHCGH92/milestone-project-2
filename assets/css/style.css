@@ -118,23 +118,29 @@ p {
 
 /* Custom Country inject display */
 
-.customCountryDisplay {
-  background-color: #e6dff5;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  overflow: hidden; 
-  width: 90%; 
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  text-align: center;
+.country-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
+.country-wrapper h2 {
+  margin-bottom: 15px;
+  font-size: 2em;
+  color: var(--primary-color);
+}
 
-.customCountryDisplay h2 {
-    color: #5A23C8 !important;
+.country-display-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #e2dfdf;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 350px;
 }
 
 /* Footer */
@@ -184,11 +190,11 @@ footer p {
     }
 
     .customCountryDisplay {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .customCountryDisplay h2 {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
 }
@@ -202,8 +208,36 @@ footer p {
         font-size: 1.3rem; 
     }
     .custom-navbar .navbar-brand {
-        font-size: 1.5rem;
+        font-size: 1rem;
         padding-left: 5px;
+    }
+
+    /*Custom Display for larger screens*/
+    .country-display-card {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 25px;
+        align-items: center;
+        width: 100%;
+        max-width: 1000px; /* Try changing this to 950px or 1000px */
+        padding: 25px;
+    }
+
+    .country-info-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        text-align: center;
+    }
+
+    .country-info-wrapper p {
+        margin: 0;
+    }
+
+    .country-display-card img {
+        width: 100%;
+        height: auto;
+        display: block;
     }
 
 }

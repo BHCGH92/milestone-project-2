@@ -5,7 +5,7 @@ const countryDisplayRow = document.querySelector('#countrydisplay .row');
 
 /* Event listener for submit and api call to fetch the user input country information */
 
-form.addEventListener('submit', async function(event) {
+form.addEventListener('submit', async function (event) {
     event.preventDefault();
     const formData = new FormData(form);
     const country = formData.get("countrytosearch")
@@ -17,44 +17,46 @@ form.addEventListener('submit', async function(event) {
             throw new Error(`API request failed with status ${response.status}`);
         }
 
-    const countryData = await response.json();
+        const countryData = await response.json();
 
-    /* Get the country name from the API */
-    const countryName = countryData[0].name.common;
-    /* Get the flag image URL from the API */
-    const countryFlag = countryData[0].flags.svg;
-    /* Get Alt info for Flag */
-    const countryFlagAlt = countryData[0].flags.alt
-    /* Get the currency code to get the symbol and name from the API  */
-    const currencyCode = Object.keys(countryData[0].currencies)[0];
-    /* Code above used to get currency symbol here and the name of the currency from the API*/
-    const currencySymbol = countryData[0].currencies[currencyCode].symbol;
-    const currencyName = countryData[0].currencies[currencyCode].name;
-    /* Get the continent from the API*/
-    const continent = countryData[0].continents;
-    /* Get the population from the API */
-    const countryPopulation = countryData[0].population;
-    /* Get the country capital */
-    const capital = countryData[0].capital;
+        /* Get the country information from the API array */
+        const countryName = countryData[0].name.common;
+        const countryFlag = countryData[0].flags.svg;
+        const countryFlagAlt = countryData[0].flags.alt
+        const currencyCode = Object.keys(countryData[0].currencies)[0];
+        const currencySymbol = countryData[0].currencies[currencyCode].symbol;
+        const currencyName = countryData[0].currencies[currencyCode].name;
+        const continent = countryData[0].continents;
+        const countryPopulation = countryData[0].population;
+        const capital = countryData[0].capital;
 
-    console.log('Full API Response:', countryData);
+        console.log('Full API Response:', countryData);
 
-    countryDisplayRow.innerHTML = '';
+        countryDisplayRow.innerHTML = '';
 
-    const countryHtml = `
-        <div class="country-display-card">
-            <img src="${countryFlag}" alt="${countryFlagAlt}" class="img-fluid mb-3 mt-3">
+        const countryHtml = `
+        <div class="country-wrapper">
+
             <h2>${countryName}</h2>
-            <p><strong>Population:</strong> ${countryPopulation}</p>
-            <p><strong>Currency:</strong> ${currencyName} (${currencySymbol})</p>
-            <p><strong>Capital City:</strong> ${capital}</p>
-            <p><strong>Continent:</strong> ${continent}</p>
+
+            <div class="country-display-card">
+                <div>
+                <img src="${countryFlag}" alt="${countryFlagAlt}" class="img-fluid mb-3 mt-3">
+                </div>
+                <div class="country-info-wrapper">
+                <p><strong>Population:</strong> ${countryPopulation}</p>
+                <p><strong>Currency:</strong> ${currencyName} (${currencySymbol})</p>
+                <p><strong>Capital City:</strong> ${capital}</p>
+                <p><strong>Continent:</strong> ${continent}</p>
+                </div>
+            </div>
+
         </div>
     `;
 
-    countryDisplayRow.innerHTML = countryHtml;
+        countryDisplayRow.innerHTML = countryHtml;
 
     } catch (error) {
-        console.error("There was a problem in retrieving the data", error)
+        console.error("There was a problem in retrieving the data", error);
     }
 });
