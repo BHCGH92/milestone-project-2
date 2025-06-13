@@ -1,7 +1,20 @@
 const form = document.getElementById('countrysearch');
-
-/* To help inject my html in the submit event listenr */
 const countryDisplayRow = document.querySelector('#countrydisplay .row');
+const errorHandleContainer = document.querySelector('.errorHandle .row');
+
+/* Message function - resuable for future additions if needed */
+/* If it's an error a red box, if not yellow (Bootstrap classes) */
+function showMessage(message, type = 'warning') {
+    const alertClass = type === 'error' ? 'alert-danger' : 'alert-warning';
+    const messageHtml = `
+        <div>
+            <div class="alert ${alertClass}" role="alert">
+                ${message}
+            </div>
+        </div>
+    `;
+    errorHandleContainer.innerHTML = messageHtml;
+}
 
 /* Event listener for submit and api call to fetch the user input country information */
 
@@ -10,11 +23,21 @@ form.addEventListener('submit', async function (event) {
     const formData = new FormData(form);
     const country = formData.get("countrytosearch")
 
+    /* Clear down everything */
+    errorHandleContainer.innerHTML = '';
+    countryDisplayRow.innerHTML = '';
+
+    /* Handle empty input from user */
+    if (!country.trim()) {
+        showMessage('Please enter a country name to search.', 'warning');
+        return; 
+    }
+
     try {
         const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
 
         if (!response.ok) {
-            throw new Error(`API request failed with status ${response.status}`);
+            throw new Error(`Sorry, we couldn't find any country named "${country}". Please try another country.`);
         }
 
         const countryData = await response.json();
@@ -57,6 +80,7 @@ form.addEventListener('submit', async function (event) {
         countryDisplayRow.innerHTML = countryHtml;
 
     } catch (error) {
+        showMessage(error.message, 'error');
         console.error("There was a problem in retrieving the data", error);
     }
 });
