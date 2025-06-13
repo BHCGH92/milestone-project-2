@@ -183,6 +183,11 @@ footer p {
     color: var(--white-accent-color);
 }
 
+footer a {
+    color: var(--white-accent-color);
+    text-decoration: underline;
+}
+
 
 /* Media Queries */
 

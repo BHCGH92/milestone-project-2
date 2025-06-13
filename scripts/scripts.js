@@ -39,7 +39,7 @@ form.addEventListener('submit', async function (event) {
         /* Start up loader display */
         loader.style.display = 'flex';
 
-        const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+        const response = await fetch(`https://restcountries.com/v3.1/name/${country}?fullText=true`);
 
         if (!response.ok) {
             throw new Error(`Sorry, we couldn't find any country named "${country}". Please try another country.`);
