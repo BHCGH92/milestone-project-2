@@ -1,9 +1,11 @@
 const form = document.getElementById('countrysearch');
 const countryDisplayRow = document.querySelector('#countrydisplay .row');
 const errorHandleContainer = document.querySelector('.errorHandle .row');
+/* Introduced a loader for slower connections */
+const loader = document.getElementById('loader');
 
 /* Message function - resuable for future additions if needed */
-/* If it's an error a red box, if not yellow (Bootstrap classes) */
+/* If it's an error a red box, if a warning then yellow (Bootstrap classes) */
 function showMessage(message, type = 'warning') {
     const alertClass = type === 'error' ? 'alert-danger' : 'alert-warning';
     const messageHtml = `
@@ -34,6 +36,9 @@ form.addEventListener('submit', async function (event) {
     }
 
     try {
+        /* Start up loader display */
+        loader.style.display = 'flex';
+
         const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
 
         if (!response.ok) {
@@ -82,5 +87,8 @@ form.addEventListener('submit', async function (event) {
     } catch (error) {
         showMessage(error.message, 'error');
         console.error("There was a problem in retrieving the data", error);
+    }  finally {
+        /* Hide Loader */
+        loader.style.display = 'none';
     }
 });

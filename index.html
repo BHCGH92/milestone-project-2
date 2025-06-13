@@ -54,7 +54,8 @@
                         Statlas is a new and fun way to learn about countries from around the world, simply input the
                         country you want to learn about and we will provide you with the country flag and some stats.
                         When you're ready to search, use the below search bar, type in the country and hit submit. This
-                        will then either return the country information or return you a "not found" message. Countries don't have
+                        will then either return the country information or return you a "not found" message. Countries
+                        don't have
                         to be spelt correctly but search results may not be accurate.
                     </p>
                     <form class="container" id="countrysearch">
@@ -82,10 +83,14 @@
     <!--Where to disply country information from returned API data-->
     <section id="countrydisplay">
         <div class="container">
-        <div class="errorHandle">
-            <div class="row">
+            <div class="errorHandle">
+                <div class="row">
+                </div>
+                <div id="loader" class="loader-row">
+                    <div class="loader">
+                    </div>
+                </div>
             </div>
-        </div>
         </div>
         <div class="container customCountryDisplay mb-4">
             <div class="row">
