@@ -19,7 +19,6 @@ function showMessage(message, type = 'warning') {
 }
 
 /* Event listener for submit and api call to fetch the user input country information */
-
 form.addEventListener('submit', async function (event) {
     event.preventDefault();
     const formData = new FormData(form);
